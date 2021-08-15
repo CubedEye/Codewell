@@ -8,11 +8,18 @@
     --box-spacing: 20px;
     --box-horizontal-padding: 1.5em;
     --box-vertical-padding: 1em;
+    --box-post-margin-bottom: 2em;
 
     --desktop-left-column-width: 25%;
     --desktop-right-column-width: 20%;
 
     /* Colours */
+    --box-title-grey: #595959;
+    --box-link-orange: #f9690e;
+
+    --milestone-color: #65676b;
+    --post-author-color: #65676b;
+
     --status-grey: #9c969c;
     --status-red: #ec6580;
 }
@@ -56,6 +63,42 @@
     margin-bottom: var(--box-spacing);
     padding: var(--box-vertical-padding) var(--box-horizontal-padding);
 }
+.content-box .title {
+    margin-bottom: var(--box-vertical-padding);
+    color: var(--box-title-grey);
+}
+.content-box .box-link {
+    color: var(--box-link-orange);
+    font-weight: bold;
+}
+
+/*
+ * Milestones
+**/
+.milestone {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: var(--box-post-margin-bottom);
+    color: var(--milestone-color);
+}
+.milestone > img {
+    margin-right: 10px;
+}
+
+/*
+ * Trending Posts
+**/
+.post {
+    margin-bottom: var(--box-post-margin-bottom);
+    font-weight: bold;
+}
+.post .author-date-box {
+    color: var(--post-author-color);
+    display: flex;
+    justify-content: space-between;
+    font-weight: normal;
+    margin-top: 10px;
+}
 
 /*
  * Live stream box
@@ -85,6 +128,12 @@
     background-image: linear-gradient(to bottom, transparent 20%, black);
     content: " ";
 }
+.live-stream-title {
+    z-index: 1;
+    max-width: 250px;
+    padding: calc(var(--box-horizontal-padding) / 2)
+        calc(var(--box-horizontal-padding) / 2);
+}
 .status-wrapper {
     display: flex;
 }
@@ -101,13 +150,6 @@
 }
 .live-status {
     background: var(--status-red);
-}
-.live-stream-title {
-    z-index: 1;
-    max-width: 250px;
-    padding: calc(var(--box-horizontal-padding) / 2)
-        calc(var(--box-horizontal-padding) / 2);
-    font-weight: bold;
 }
 
 /*
@@ -160,7 +202,7 @@
         padding: 0 var(--box-vertical-padding);
     }
 
-    .milestone-box {
+    .milestones-container {
         width: var(--desktop-left-column-width);
 
         position: absolute;
