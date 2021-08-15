@@ -382,5 +382,15 @@ h4 {
 
 a {
     color: inherit;
-    text-decoration: none;
+    text-decoration: underline;
+
+    /*
+     * You can't transition text-decoration, but you can
+     * transition the text-decoration-color
+    **/
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.5s;
+}
+a:hover {
+    text-decoration-color: currentColor;
 }
