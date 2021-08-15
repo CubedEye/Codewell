@@ -17,6 +17,8 @@
     --box-title-grey: #595959;
     --box-link-orange: #f9690e;
 
+    --search-input-color: #c5c5c5;
+
     --milestone-color: #65676b;
     --post-author-color: #65676b;
 
@@ -69,7 +71,70 @@
 }
 .content-box .box-link {
     color: var(--box-link-orange);
-    font-weight: bold;
+}
+
+/*
+ * Search Form
+**/
+.search-box {
+    display: flex;
+}
+.search-input {
+    margin-left: var(--box-vertical-padding);
+    padding: 0.5em 4em 0.5em 1.5em;
+    border: 1px solid var(--search-input-color);
+    border-radius: 3px;
+    position: relative;
+    background-image: url(/images/Add\ Image.svg);
+    background-position: calc(100% - 1.5em) center;
+    background-repeat: no-repeat;
+}
+
+/*
+ * Feed Post
+**/
+.feed-post {
+    padding: 0;
+}
+.feed-post header {
+    display: flex;
+    align-items: center;
+}
+.post-author-date {
+    flex: 1;
+    margin-left: 10px;
+}
+.feed-post .post-date {
+    color: var(--post-author-color);
+    line-height: 1;
+}
+.feed-post > * {
+    padding: var(--box-vertical-padding) var(--box-horizontal-padding);
+}
+.feed-post .post-image {
+    width: 100%;
+    padding: 0;
+}
+.feed-post footer {
+    display: flex;
+    padding-top: 0;
+}
+.feed-post footer .post-button {
+    margin-right: 0.5em;
+}
+.post-button {
+    flex: 0 1;
+    display: flex;
+    border: 1px solid var(--search-input-color);
+    padding: 0.5em 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+
+    transition: background-color 0.5s;
+    color: var(--post-author-color);
+}
+.post-button:hover {
+    background: var(--search-input-color);
 }
 
 /*
@@ -88,15 +153,13 @@
 /*
  * Trending Posts
 **/
-.post {
+.trending-post {
     margin-bottom: var(--box-post-margin-bottom);
-    font-weight: bold;
 }
-.post .author-date-box {
+.trending-post .author-date-box {
     color: var(--post-author-color);
     display: flex;
     justify-content: space-between;
-    font-weight: normal;
     margin-top: 10px;
 }
 

@@ -112,7 +112,7 @@ body {
     **/
     position: relative;
 
-    background: #e5e5e5;
+    background: #f4f5f7;
 }
 
 pre {
@@ -262,6 +262,8 @@ textarea {
     padding: 0;
     margin: 0;
 
+    outline: 0;
+
     /**
      * Make sure we inherit the font, the textarea likes to default to a
      * fixed-width font.
@@ -299,6 +301,9 @@ textarea {
     **/
     display: block;
     width: 100%;
+}
+input:focus {
+    border-color: #1868fb;
 }
 
 select:-moz-focusring {
