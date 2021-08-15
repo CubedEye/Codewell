@@ -112,7 +112,7 @@ body {
     **/
     position: relative;
 
-    background: #f4f5f7;
+    background: var(--color-very-light-grey);
 }
 
 pre {
@@ -227,8 +227,6 @@ li {
  * up without worrying about browser inconsistencies.
 **/
 button {
-    display: block;
-    width: 100%;
     border: 0;
     padding: 0;
     margin: 0;
@@ -303,7 +301,7 @@ textarea {
     width: 100%;
 }
 input:focus {
-    border-color: #1868fb;
+    border-color: var(--color-blue);
 }
 
 select:-moz-focusring {
@@ -388,14 +386,14 @@ h4 {
 
 a {
     color: inherit;
-    text-decoration: underline;
+    text-decoration-line: underline;
 
     /*
      * You can't transition text-decoration, but you can
      * transition the text-decoration-color
     **/
     text-decoration-color: transparent;
-    transition: text-decoration-color 0.5s;
+    transition: text-decoration-color var(--transition-speed);
 }
 a:hover {
     text-decoration-color: currentColor;

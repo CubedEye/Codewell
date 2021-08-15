@@ -1,0 +1,24 @@
+:root {
+    --max-page-width: 1280px;
+    --page-edge-padding: 40px;
+
+    --spacing-extra-small: 0.5em;
+    --spacing-small: 1em;
+    --spacing-normal: 1.5em;
+    --spacing-large: 2em;
+
+    --transition-speed: 0.5s;
+
+    --border-radius: 5px;
+    --control-border-radius: 5px;
+
+    /* Colours */
+    --color-very-light-grey: #f4f5f7;
+    --color-light-grey: #c5c5c5;
+    --color-grey: #65676b;
+    --color-dark-grey: #595959;
+
+    --color-orange: #f9690e;
+    --color-red: #ec6580;
+    --color-blue: #1868fb;
+}

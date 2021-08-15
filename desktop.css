@@ -1,0 +1,71 @@
+:root {
+    --desktop-left-column-width: 25%;
+    --desktop-right-column-width: 20%;
+}
+
+.logo-wrapper {
+    width: var(--desktop-left-column-width);
+}
+.menu {
+    display: flex;
+    flex: 1;
+}
+.menu-content {
+    display: flex;
+    position: relative;
+
+    box-shadow: none;
+
+    opacity: 1;
+    pointer-events: all;
+
+    transform: none;
+    transition: none;
+}
+.menu-content nav {
+    flex: 1;
+    flex-direction: row;
+    justify-content: center;
+}
+.menu-content nav > * {
+    margin: var(--spacing-small);
+}
+.menu-button {
+    display: none;
+}
+.user-profile-container {
+    margin: 0;
+    min-width: var(--desktop-right-column-width);
+}
+
+.content-container {
+    display: flex;
+}
+.content-container > aside {
+    width: var(--desktop-right-column-width);
+
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+}
+
+/*
+ * Push our the width of milestone/trending boxes, because
+ * we've positioned the milestone box on the left hand side.
+**/
+.milestone-trending-container > * {
+    width: 100%;
+}
+.feed-container {
+    flex: 1;
+
+    margin-left: var(--desktop-left-column-width);
+    padding: 0 var(--spacing-small);
+}
+.milestones-container {
+    width: var(--desktop-left-column-width);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}

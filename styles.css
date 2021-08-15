@@ -1,84 +1,87 @@
-/*
- * CSS Variables
-**/
-:root {
-    --max-page-width: 1280px;
-    --page-edge-padding: 40px;
-
-    --box-spacing: 20px;
-    --box-horizontal-padding: 1.5em;
-    --box-vertical-padding: 1em;
-    --box-post-margin-bottom: 2em;
-
-    --desktop-left-column-width: 25%;
-    --desktop-right-column-width: 20%;
-
-    /* Colours */
-    --box-title-grey: #595959;
-    --box-link-orange: #f9690e;
-
-    --search-input-color: #c5c5c5;
-
-    --milestone-color: #65676b;
-    --post-author-color: #65676b;
-
-    --status-grey: #9c969c;
-    --status-red: #ec6580;
-}
-
 /* 
  * Header
 **/
 .page-header {
+    position: relative;
+    padding: 0 var(--spacing-normal);
     background: white;
-    padding: 0 var(--box-horizontal-padding);
 }
-.header-wrapper {
+.header-container {
     max-width: var(--max-page-width);
-    padding: var(--box-horizontal-padding) 0;
 
     display: flex;
+    justify-content: space-between;
     align-items: center;
 
     margin: 0 auto;
+    padding: var(--spacing-normal) 0;
 }
-.header-wrapper > nav {
+
+.menu-content {
+    width: 100%;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 2;
+
+    background: white;
+    box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
+
+    opacity: 0;
+    pointer-events: none;
+
+    transform: translateY(-50px);
+    transition: opacity var(--transition-speed),
+        transform var(--transition-speed);
+}
+.menu-content nav {
     display: flex;
-    flex: 1;
-    justify-content: center;
+    flex-direction: column;
 }
-.header-wrapper > nav > * {
-    margin: 1em;
+.menu-content nav > * {
+    margin: var(--spacing-small) auto;
+
+    color: var(--color-grey);
     font-size: 18px;
-    color: var(--milestone-color);
+}
+.menu:focus-within .menu-content {
+    opacity: 1;
+    pointer-events: all;
+
+    transform: translateY(0);
 }
 
 .user-profile-container {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
+
+    margin: var(--spacing-normal);
 }
 .user-profile {
     display: flex;
     white-space: nowrap;
     align-items: center;
+
+    margin-left: var(--spacing-small);
 }
 .user-profile img {
-    margin-right: 5px;
+    margin-right: 1ch;
 }
+
 .notification-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 100%;
-    border: 1px solid var(--search-input-color);
-    line-height: 1;
     width: 2em;
     height: 2em;
-    margin-right: 1em;
-    transition: background-color 0.5s;
+
+    border-radius: 100%;
+    border: 1px solid var(--color-light-grey);
+
+    transition: background-color var(--transition-speed);
+    text-align: center;
 }
 .notification-button:hover {
-    background: var(--search-input-color);
+    background: var(--color-light-grey);
 }
 
 /*
@@ -87,7 +90,7 @@
 .page-content {
     padding: var(--page-edge-padding) 0;
 }
-.content-wrapper {
+.content-container {
     max-width: var(--max-page-width);
     position: relative;
 
@@ -95,16 +98,17 @@
 }
 
 .content-box {
+    margin-bottom: var(--spacing-normal);
+    padding: var(--spacing-small) var(--spacing-normal);
+
     background: white;
-    margin-bottom: var(--box-spacing);
-    padding: var(--box-vertical-padding) var(--box-horizontal-padding);
 }
 .content-box .title {
-    margin-bottom: var(--box-vertical-padding);
-    color: var(--box-title-grey);
+    margin-bottom: var(--spacing-small);
+    color: var(--color-grey);
 }
 .content-box .box-link {
-    color: var(--box-link-orange);
+    color: var(--color-orange);
 }
 
 /*
@@ -114,14 +118,24 @@
     display: flex;
 }
 .search-input {
-    margin-left: var(--box-vertical-padding);
-    padding: 0.5em 3.5em 0.5em 1.5em;
-    border: 1px solid var(--search-input-color);
-    border-radius: 3px;
-    position: relative;
-    background-image: url(/images/Add\ Image.svg);
-    background-size: 1.5em;
-    background-position: calc(100% - 1.5em) center;
+    --input-vertical-padding: 0.5em;
+    --input-horizontal-padding: 1.5em;
+    --input-icon-size: 1.5em;
+
+    --input-padding-right: calc(
+        var(--input-horizontal-padding) + var(--input-icon-size) + 0.5em
+    );
+
+    margin-left: var(--spacing-small);
+    padding: var(--input-vertical-padding) var(--input-horizontal-padding);
+    padding-right: var(--input-padding-right);
+
+    border: 1px solid var(--color-light-grey);
+    border-radius: var(--control-border-radius);
+
+    background-image: url("/images/Add Image.svg");
+    background-size: var(--input-icon-size);
+    background-position: calc(100% - var(--input-horizontal-padding)) center;
     background-repeat: no-repeat;
 }
 
@@ -129,23 +143,29 @@
  * Feed Post
 **/
 .feed-post {
+    /*
+     * Remove the padding from content box so we can have edge to edge
+     * images.
+    **/
     padding: 0;
 }
+.feed-post > * {
+    padding: var(--spacing-small) var(--spacing-normal);
+}
+
 .feed-post header {
     display: flex;
     align-items: center;
 }
 .post-author-date {
     flex: 1;
-    margin-left: 10px;
+    margin-left: var(--spacing-small);
 }
 .feed-post .post-date {
-    color: var(--post-author-color);
+    color: var(--color-grey);
     line-height: 1;
 }
-.feed-post > * {
-    padding: var(--box-vertical-padding) var(--box-horizontal-padding);
-}
+
 .feed-post .post-image {
     width: 100%;
     padding: 0;
@@ -155,21 +175,25 @@
     padding-top: 0;
 }
 .feed-post footer .post-button {
-    margin-right: 0.5em;
+    margin-right: 1ch;
 }
 .post-button {
-    flex: 0 1;
     display: flex;
-    border: 1px solid var(--search-input-color);
-    padding: 0.5em 10px;
-    border-radius: 3px;
+    padding: var(--spacing-extra-small) var(--spacing-small);
+
+    border: 1px solid var(--color-light-grey);
+    border-radius: var(--control-border-radius);
+
+    color: var(--color-grey);
     white-space: nowrap;
 
-    transition: background-color 0.5s;
-    color: var(--post-author-color);
+    transition: background-color var(--transition-speed);
 }
 .post-button:hover {
-    background: var(--search-input-color);
+    background-color: var(--color-light-grey);
+}
+.post-button > img {
+    margin-right: 1ch;
 }
 
 /*
@@ -178,45 +202,51 @@
 .milestone {
     display: flex;
     align-items: flex-start;
-    margin-bottom: var(--box-post-margin-bottom);
-    color: var(--milestone-color);
+
+    margin-bottom: var(--spacing-large);
+
+    color: var(--color-grey);
 }
 .milestone > img {
-    margin-right: 10px;
+    margin-right: var(--spacing-small);
 }
 
 /*
  * Trending Posts
 **/
 .trending-post {
-    margin-bottom: var(--box-post-margin-bottom);
+    margin-bottom: var(--spacing-large);
 }
 .trending-post .author-date-box {
-    color: var(--post-author-color);
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+
+    margin-top: var(--spacing-extra-small);
+
+    color: var(--color-grey);
 }
 
 /*
  * Live stream box
 **/
 .live-stream-box {
+    min-height: 16em;
+
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    min-height: 256px;
-    position: relative;
-    padding: calc(var(--box-horizontal-padding) / 2);
+    overflow: hidden;
+
+    padding: var(--spacing-small);
 
     background-position: center;
     background-size: cover;
 
-    overflow: hidden;
-
     color: white;
 }
+/* Image overlay */
 .live-stream-box::before {
     width: 100%;
     height: 100%;
@@ -227,84 +257,25 @@
     content: " ";
 }
 .live-stream-title {
-    z-index: 1;
-    max-width: 250px;
-    padding: calc(var(--box-horizontal-padding) / 2)
-        calc(var(--box-horizontal-padding) / 2);
+    position: relative;
 }
 .status-wrapper {
     display: flex;
 }
 .status-box {
-    padding: 0.5em 12px;
-    margin-right: 10px;
-    border-radius: 5px;
+    padding: var(--spacing-extra-small) var(--spacing-small);
+    margin-right: var(--spacing-small);
+    border-radius: var(--border-radius);
 
     font-size: 0.75em;
     line-height: 1;
 
-    background: var(--status-grey);
+    background: var(--color-grey);
     color: white;
 }
+.status-box > img {
+    margin-right: 1ch;
+}
 .live-status {
-    background: var(--status-red);
-}
-
-/*
- * Tablet + Desktop
-**/
-@media (min-width: 768px) {
-    .page-header {
-        padding: 0 var(--page-edge-padding);
-    }
-    .page-content {
-        padding: var(--page-edge-padding);
-    }
-
-    .milestone-trending-container {
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: space-between;
-    }
-    .milestone-trending-container > * {
-        width: calc(50% - (var(--box-spacing) / 2));
-    }
-
-    .content-box {
-        border-radius: 5px;
-    }
-}
-
-/*
- * Desktop Only
-**/
-@media (min-width: 1024px) {
-    .content-wrapper {
-        display: flex;
-    }
-    .content-wrapper > aside {
-        width: var(--desktop-right-column-width);
-
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: flex-end;
-    }
-
-    .milestone-trending-container > * {
-        width: 100%;
-    }
-    .feed-container {
-        flex: 1;
-
-        margin-left: var(--desktop-left-column-width);
-        padding: 0 var(--box-vertical-padding);
-    }
-
-    .milestones-container {
-        width: var(--desktop-left-column-width);
-
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
+    background: var(--color-red);
 }

@@ -1,0 +1,18 @@
+.page-header {
+    padding: 0 var(--page-edge-padding);
+}
+.page-content {
+    padding: var(--page-edge-padding);
+}
+.content-box {
+    border-radius: var(--border-radius);
+}
+
+.milestone-trending-container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+.milestone-trending-container > * {
+    width: calc(50% - (var(--spacing-normal) / 2));
+}
